@@ -1,0 +1,41 @@
+.game-type-card {
+    margin-top: 1rem;
+    width: 100%;
+    height: 235px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 4px 4px 10px #000000cc;
+
+    &.game-type-easy {
+        background: url(../pictures/diagon-alley.jpg) no-repeat center center;
+        background-size: cover;
+    }
+    
+    &.game-type-medium {
+        background: url(../pictures/hogwarts-express.jpg) no-repeat center center;
+        background-size: cover;
+    }
+    
+    &.game-type-difficult {
+        background: url(../pictures/scrolls.jpg) no-repeat center center;
+        background-size: cover;
+    }
+
+    h2 {
+        padding-top: 4.25rem;
+        font-size: 2rem;
+        text-shadow: 0 0 15px #00000080;
+    }
+
+    p {
+        background-color: #ffffffd9;
+        color: #000;
+        border-radius: 0 0 20px 20px;
+        padding: 0.5rem 1rem;
+        font-weight: bold;
+        height: 28%;
+    }
+}

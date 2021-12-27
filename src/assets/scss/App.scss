@@ -16,6 +16,8 @@ html {
 
 body {
     color: #fff3c2;
+    height: 100vh;
+    backdrop-filter: blur(2px) brightness(80%);
 }
 
 h1, h2 {
