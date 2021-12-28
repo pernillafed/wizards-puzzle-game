@@ -2,8 +2,8 @@ import React from 'react';
 
 const GameRules = ({ setShowGameRules }) => {
     return (
-        <div className="game-rules">
-            <div className="game-rules-popup">
+        <div className="game-rules popup-background">
+            <div className="game-rules-popup popup">
                 <div className="close-button">
                     <i className="fas fa-times-circle" onClick={() => setShowGameRules(false)}></i>
                 </div>

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import ExitGame from './ExitGame';
 import GameRules from './GameRules';
 
 const Navbar = () => {
     const [inGame, setInGame] = useState(false);
     const [showGameRules, setShowGameRules] = useState(false);
+    const [showExitGame, setShowExitGame] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
@@ -19,7 +21,7 @@ const Navbar = () => {
         <>
             <div className="navbar">
                 <div className="back-button">
-                    {inGame && <i className="fas fa-arrow-alt-circle-left"></i>}
+                    {inGame && <i className="fas fa-arrow-alt-circle-left" onClick={() => setShowExitGame(true)}></i>}
                 </div>
                 <div className="logo">
                     <span className="logo-compact">WP</span>
@@ -29,6 +31,7 @@ const Navbar = () => {
                     <i className="fas fa-info-circle" onClick={() => setShowGameRules(!showGameRules)}></i>
                 </div>
             </div>
+            {showExitGame && <ExitGame setShowExitGame={setShowExitGame} />}
             {showGameRules && <GameRules setShowGameRules={setShowGameRules} />}
         </>
     );
