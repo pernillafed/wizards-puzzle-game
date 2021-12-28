@@ -18,12 +18,15 @@ html {
 body {
     color: #fff3c2;
     backdrop-filter: blur(2px) brightness(80%);
-    font-family: "Open Sans", sans-serif;
 }
 
 h1, h2 {
     font-family: "Harry Potter", sans-serif;
     font-weight: normal;
+}
+
+p {
+    font-family: "Open Sans", sans-serif;
 }
 
 .popup-background {
