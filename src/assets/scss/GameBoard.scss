@@ -1,0 +1,13 @@
+.game-board {
+    background-color: #ffffffd9;
+    border-radius: 20px;
+    box-shadow: 4px 4px 10px hsla(0, 0%, 0%, 0.8);
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0.5rem;
+    padding: 0.75rem;
+
+    img {
+        width: 100%;
+    }
+}

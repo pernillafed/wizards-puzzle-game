@@ -1,4 +1,7 @@
 import { createContext, useContext } from "react";
+import gameTypes from "../data/gameTypes.json";
+import { GoldenSnitch, HogwartsShield, MaraudersMap, Owl, SortingHat, TimeTurner, Wand } from "../assets/icons";
+import { useState } from "react/cjs/react.development";
 
 const GameContext = createContext();
 
@@ -7,26 +10,34 @@ const useGameContext = () => {
 };
 
 const GameContextProvider = ({ children }) => {
-    const gameTypes = [
-        {
-            label: "easy",
-            description: "This is the easiest game type. Choose this for a more relaxed game.",
-            gameTypeClass: "game-type-easy"
-        },
-        {
-            label: "medium",
-            description: "This game typ is not easy, but not too difficult. Choose this to up your skills.",
-            gameTypeClass: "game-type-medium"
-        },
-        {
-            label: "difficult",
-            description: "This is the most difficult game type. Choose this for a challenge.",
-            gameTypeClass: "game-type-difficult"
-        },
-    ];
+    const boardWidth = 8;
+    let items = [];
+    const gameTypesList = gameTypes.map(type => {
+        return {...type};
+    });
+    
+    const [boardArrangement, setBoardArrangement] = useState([]);
+    
+    const createBoard = (gameType) => {
+        const randomItemList = [];
+        if (gameType === "easy") {
+            items = [GoldenSnitch, HogwartsShield, Owl, SortingHat, Wand];
+        } else if (gameType === "medium") {
+            items = [GoldenSnitch, HogwartsShield, Owl, SortingHat, Wand, MaraudersMap];
+        } else {
+            items = [GoldenSnitch, HogwartsShield, Owl, SortingHat, Wand, MaraudersMap, TimeTurner];
+        }
+        for (let i = 0; i < boardWidth * boardWidth; i++) {
+            const randomItem = items[Math.floor(Math.random() * items.length)];
+            randomItemList.push(randomItem);
+        }
+        setBoardArrangement(randomItemList);
+    };
 
     const values = {
-        gameTypes,
+        gameTypesList,
+        boardArrangement,
+        createBoard
     };
 
     return ( 

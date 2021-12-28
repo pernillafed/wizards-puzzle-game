@@ -3,7 +3,7 @@ import GameTypeCard from '../components/GameTypeCard';
 import { useGameContext } from '../contexts/GameContext';
 
 const HomePage = () => {
-    const { gameTypes } = useGameContext();
+    const { gameTypesList } = useGameContext();
 
     return (
         <div className="home-page">
@@ -12,7 +12,7 @@ const HomePage = () => {
                 <p>Start by choosing a game below</p>
             </div>
             <div className="game-types">
-                {gameTypes && gameTypes.map(gameType => (
+                {gameTypesList && gameTypesList.map(gameType => (
                     <GameTypeCard key={gameType.label} label={gameType.label} description={gameType.description} gameTypeClass={gameType.gameTypeClass} />
                 ))}
             </div>
