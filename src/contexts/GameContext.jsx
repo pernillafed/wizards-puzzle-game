@@ -20,7 +20,7 @@ const GameContextProvider = ({ children }) => {
         },
         {
             label: "difficult",
-            description: "This is the most difficult game type. Choose this for the challenge.",
+            description: "This is the most difficult game type. Choose this for a challenge.",
             gameTypeClass: "game-type-difficult"
         },
     ];
