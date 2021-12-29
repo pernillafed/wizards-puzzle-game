@@ -20,7 +20,7 @@ const GameBoard = ({ gameType }) => {
             checkForColumnOf(3);
             checkForRowOf(3);
             moveDownAndRefill(gameType);
-        }, 1000);
+        }, 200);
         return () => clearInterval(gameLoop);
     }, [boardArrangement]);
 
