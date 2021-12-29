@@ -3,18 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useGameContext } from '../contexts/GameContext';
 
 const GameBoard = ({ gameType }) => {
-    const {
-        boardArrangement,
-        createBoard,
-        // checkForColumnOf,
-        // checkForRowOf
-        checkForColumnOfFive,
-        checkForRowOfFive,
-        checkForColumnOfFour,
-        checkForRowOfFour,
-        checkForColumnOfThree,
-        checkForRowOfThree
-    } = useGameContext();
+    const { boardArrangement, createBoard, checkForColumnOf, checkForRowOf } = useGameContext();
 
     const location = useLocation();
 
@@ -24,18 +13,12 @@ const GameBoard = ({ gameType }) => {
 
     useEffect(() => {
         const gameLoop = setInterval(() => {
-            // checkForColumnOf(5);
-            // checkForRowOf(5);
-            // checkForColumnOf(4);
-            // checkForRowOf(4);
-            // checkForColumnOf(3);
-            // checkForRowOf(3);
-            checkForColumnOfFive();
-            checkForRowOfFive();
-            checkForColumnOfFour();
-            checkForRowOfFour();
-            checkForColumnOfThree();
-            checkForRowOfThree();
+            checkForColumnOf(5);
+            checkForRowOf(5);
+            checkForColumnOf(4);
+            checkForRowOf(4);
+            checkForColumnOf(3);
+            checkForRowOf(3);
         }, 1000);
         return () => clearInterval(gameLoop);
     }, [boardArrangement]);
