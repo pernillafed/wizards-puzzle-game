@@ -5,6 +5,7 @@ import Owl from "./owl.png";
 import SortingHat from "./sorting-hat.png";
 import TimeTurner from "./time-turner.png";
 import Wand from "./wand.png";
+import Blank from "./blank.png";
  
 export {
     GoldenSnitch,
@@ -13,5 +14,6 @@ export {
     Owl,
     SortingHat,
     TimeTurner,
-    Wand
+    Wand,
+    Blank
 };
