@@ -19,7 +19,7 @@ const GameBoard = ({ gameType }) => {
             checkForRowOf(4);
             checkForColumnOf(3);
             checkForRowOf(3);
-        }, 1000);
+        }, 500);
         return () => clearInterval(gameLoop);
     }, [boardArrangement]);
 
