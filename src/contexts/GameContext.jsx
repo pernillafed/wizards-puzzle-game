@@ -20,6 +20,7 @@ const GameContextProvider = ({ children }) => {
     
     const createBoard = (gameType) => {
         const randomItemList = [];
+
         if (gameType === "easy") {
             items = [GoldenSnitch, HogwartsShield, Owl, SortingHat, Wand];
         } else if (gameType === "medium") {
@@ -27,10 +28,12 @@ const GameContextProvider = ({ children }) => {
         } else {
             items = [GoldenSnitch, HogwartsShield, Owl, SortingHat, Wand, MaraudersMap, TimeTurner];
         }
+
         for (let i = 0; i < boardWidth * boardWidth; i++) {
             const randomItem = items[Math.floor(Math.random() * items.length)];
             randomItemList.push(randomItem);
         }
+
         setBoardArrangement(randomItemList);
     };
 
@@ -103,12 +106,40 @@ const GameContextProvider = ({ children }) => {
         }
     };
 
+    const moveDownAndRefill = (gameType) => {
+        if (gameType === "easy") {
+            items = [GoldenSnitch, HogwartsShield, Owl, SortingHat, Wand];
+        } else if (gameType === "medium") {
+            items = [GoldenSnitch, HogwartsShield, Owl, SortingHat, Wand, MaraudersMap];
+        } else {
+            items = [GoldenSnitch, HogwartsShield, Owl, SortingHat, Wand, MaraudersMap, TimeTurner];
+        }
+
+        for (let i = 0; i <= 55; i++) {
+            const firstRow = [0, 1, 2, 3, 4, 5, 6, 7];
+            
+            if (firstRow.includes(i) && boardArrangement[i] === Blank) {
+                let randomItem = items[Math.floor(Math.random() * items.length)];
+                boardArrangement[i] = randomItem;
+                setBoardArrangement([...boardArrangement]);
+            }
+            
+            if ((boardArrangement[i + boardWidth]) === Blank) {
+                boardArrangement[i + boardWidth] = boardArrangement[i];
+                boardArrangement[i] = Blank;
+                setBoardArrangement([...boardArrangement]);
+            }
+            
+        }
+    };
+
     const values = {
         gameTypesList,
         boardArrangement,
         createBoard,
         checkForColumnOf,
-        checkForRowOf
+        checkForRowOf,
+        moveDownAndRefill
     };
 
     return ( 
