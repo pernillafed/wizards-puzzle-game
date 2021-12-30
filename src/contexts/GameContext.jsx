@@ -17,6 +17,8 @@ const GameContextProvider = ({ children }) => {
     });
     
     const [boardArrangement, setBoardArrangement] = useState([]);
+    const [itemBeingDragged, setItemBeingDragged] = useState(null);
+    const [itemBeingReplaced, setItemBeingReplaced] = useState(null);
     
     const createBoard = (gameType) => {
         const randomItemList = [];
@@ -133,13 +135,81 @@ const GameContextProvider = ({ children }) => {
         }
     };
 
+    const validMove = (itemBeingDraggedId, itemBeingReplacedId) => {
+        const validMoves = [];
+        const firstColumn = [];
+        const lastColumn = [];
+
+        for (let i = 0; i < boardWidth * boardWidth; i += boardWidth) firstColumn.push(i);
+        for (let i = boardWidth - 1; i < boardWidth * boardWidth; i += boardWidth) lastColumn.push(i);
+
+        if (firstColumn.includes(itemBeingDraggedId)) {
+            validMoves.push(itemBeingDraggedId - boardWidth, itemBeingDraggedId + 1, itemBeingDraggedId + boardWidth);
+        } else if (lastColumn.includes(itemBeingDraggedId)) {
+            validMoves.push(itemBeingDraggedId - 1, itemBeingDraggedId - boardWidth, itemBeingDraggedId + boardWidth);
+        } else {
+            validMoves.push(itemBeingDraggedId - 1, itemBeingDraggedId - boardWidth, itemBeingDraggedId + 1, itemBeingDraggedId + boardWidth);
+        }
+
+        if (validMoves.includes(itemBeingReplacedId)) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    const touchDragStart = (e) => {
+        setItemBeingDragged(e.target);
+    };
+
+    const touchDragMove = (e) => {
+    };
+    
+    // Must solve problem with matching here!!
+    const touchDragEnd = (e) => {
+        const endTarget = document.elementFromPoint(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+        setItemBeingReplaced(endTarget);
+
+        const itemBeingDraggedId = parseInt(itemBeingDragged.getAttribute("data-id"));
+        const itemBeingReplacedId = parseInt(itemBeingReplaced.getAttribute("data-id"));
+
+        boardArrangement[itemBeingReplacedId] = itemBeingDragged.getAttribute("src");
+        boardArrangement[itemBeingDraggedId] = itemBeingReplaced.getAttribute("src");
+
+        const isValidMove = validMove(itemBeingDraggedId, itemBeingReplacedId);
+
+        const isAColumnOfFive = checkForColumnOf(5);
+        const isAColumnOfFour = checkForColumnOf(4);
+        const isAColumnOfThree = checkForColumnOf(3);
+        const isARowOfFive = checkForRowOf(5);
+        const isARowOfFour = checkForRowOf(4);
+        const isARowOfThree = checkForRowOf(3);
+
+        if (
+            itemBeingReplacedId &&
+            isValidMove &&
+            (isAColumnOfFive || isAColumnOfFour || isAColumnOfThree || isARowOfFive || isARowOfFour || isARowOfThree)
+        ) {
+            setItemBeingDragged(null);
+            setItemBeingReplaced(null);
+            setBoardArrangement([...boardArrangement]);
+        } else {
+            boardArrangement[itemBeingReplacedId] = itemBeingReplaced.getAttribute("src");
+            boardArrangement[itemBeingDraggedId] = itemBeingDragged.getAttribute("src");
+        }
+
+    };
+
     const values = {
         gameTypesList,
         boardArrangement,
         createBoard,
         checkForColumnOf,
         checkForRowOf,
-        moveDownAndRefill
+        moveDownAndRefill,
+        touchDragStart,
+        touchDragMove,
+        touchDragEnd
     };
 
     return ( 

@@ -3,7 +3,16 @@ import { useLocation } from 'react-router-dom';
 import { useGameContext } from '../contexts/GameContext';
 
 const GameBoard = ({ gameType }) => {
-    const { boardArrangement, createBoard, checkForColumnOf, checkForRowOf, moveDownAndRefill } = useGameContext();
+    const {
+        boardArrangement,
+        createBoard,
+        checkForColumnOf,
+        checkForRowOf,
+        moveDownAndRefill,
+        touchDragStart,
+        touchDragMove,
+        touchDragEnd
+    } = useGameContext();
 
     const location = useLocation();
 
@@ -27,7 +36,15 @@ const GameBoard = ({ gameType }) => {
     return (
         <div className="game-board">
             {boardArrangement && boardArrangement.map((item, i) => (
-                <img src={item} alt={item} key={i} />
+                <img
+                    key={i}
+                    src={item}
+                    alt={item}
+                    data-id={i}
+                    onTouchStart={touchDragStart}
+                    onTouchMove={touchDragMove}
+                    onTouchEnd={touchDragEnd}
+                />
             ))}
         </div>
     
