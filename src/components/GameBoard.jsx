@@ -10,7 +10,6 @@ const GameBoard = ({ gameType }) => {
         checkForRowOf,
         moveDownAndRefill,
         touchDragStart,
-        touchDragMove,
         touchDragEnd
     } = useGameContext();
 
@@ -42,7 +41,6 @@ const GameBoard = ({ gameType }) => {
                     alt={item}
                     data-id={i}
                     onTouchStart={touchDragStart}
-                    onTouchMove={touchDragMove}
                     onTouchEnd={touchDragEnd}
                 />
             ))}

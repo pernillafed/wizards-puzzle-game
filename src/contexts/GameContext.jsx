@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import gameTypes from "../data/gameTypes.json";
 import { GoldenSnitch, HogwartsShield, MaraudersMap, Owl, SortingHat, TimeTurner, Wand, Blank } from "../assets/icons";
-import { useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react/cjs/react.development";
 
 const GameContext = createContext();
 
@@ -19,6 +19,47 @@ const GameContextProvider = ({ children }) => {
     const [boardArrangement, setBoardArrangement] = useState([]);
     const [itemBeingDragged, setItemBeingDragged] = useState(null);
     const [itemBeingReplaced, setItemBeingReplaced] = useState(null);
+
+    useEffect(() => {
+        if (itemBeingReplaced) {
+            const itemBeingDraggedId = parseInt(itemBeingDragged.getAttribute("data-id"));
+            const itemBeingReplacedId = parseInt(itemBeingReplaced.getAttribute("data-id"));
+    
+            boardArrangement[itemBeingReplacedId] = itemBeingDragged.getAttribute("src");
+            boardArrangement[itemBeingDraggedId] = itemBeingReplaced.getAttribute("src");
+    
+            const isValidMove = validMove(itemBeingDraggedId, itemBeingReplacedId);
+    
+            let isAColumnOfFive = false;
+            let isAColumnOfFour = false;
+            let isAColumnOfThree = false;
+            let isARowOfFive = false;
+            let isARowOfFour = false;
+            let isARowOfThree = false;
+
+            if (isValidMove) {
+                isAColumnOfFive = checkForColumnOf(5);
+                isAColumnOfFour = checkForColumnOf(4);
+                isAColumnOfThree = checkForColumnOf(3);
+                isARowOfFive = checkForRowOf(5);
+                isARowOfFour = checkForRowOf(4);
+                isARowOfThree = checkForRowOf(3);
+            }
+    
+            if (
+                itemBeingReplacedId &&
+                isValidMove &&
+                (isAColumnOfFive || isAColumnOfFour || isAColumnOfThree || isARowOfFive || isARowOfFour || isARowOfThree)
+            ) {
+                setItemBeingDragged(null);
+                setItemBeingReplaced(null);
+            } else {
+                boardArrangement[itemBeingReplacedId] = itemBeingReplaced.getAttribute("src");
+                boardArrangement[itemBeingDraggedId] = itemBeingDragged.getAttribute("src");
+                setBoardArrangement([...boardArrangement]);
+            }
+        }
+    }, [itemBeingReplaced]);
     
     const createBoard = (gameType) => {
         const randomItemList = [];
@@ -161,43 +202,10 @@ const GameContextProvider = ({ children }) => {
     const touchDragStart = (e) => {
         setItemBeingDragged(e.target);
     };
-
-    const touchDragMove = (e) => {
-    };
     
-    // Must solve problem with matching here!!
     const touchDragEnd = (e) => {
         const endTarget = document.elementFromPoint(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
         setItemBeingReplaced(endTarget);
-
-        const itemBeingDraggedId = parseInt(itemBeingDragged.getAttribute("data-id"));
-        const itemBeingReplacedId = parseInt(itemBeingReplaced.getAttribute("data-id"));
-
-        boardArrangement[itemBeingReplacedId] = itemBeingDragged.getAttribute("src");
-        boardArrangement[itemBeingDraggedId] = itemBeingReplaced.getAttribute("src");
-
-        const isValidMove = validMove(itemBeingDraggedId, itemBeingReplacedId);
-
-        const isAColumnOfFive = checkForColumnOf(5);
-        const isAColumnOfFour = checkForColumnOf(4);
-        const isAColumnOfThree = checkForColumnOf(3);
-        const isARowOfFive = checkForRowOf(5);
-        const isARowOfFour = checkForRowOf(4);
-        const isARowOfThree = checkForRowOf(3);
-
-        if (
-            itemBeingReplacedId &&
-            isValidMove &&
-            (isAColumnOfFive || isAColumnOfFour || isAColumnOfThree || isARowOfFive || isARowOfFour || isARowOfThree)
-        ) {
-            setItemBeingDragged(null);
-            setItemBeingReplaced(null);
-            setBoardArrangement([...boardArrangement]);
-        } else {
-            boardArrangement[itemBeingReplacedId] = itemBeingReplaced.getAttribute("src");
-            boardArrangement[itemBeingDraggedId] = itemBeingDragged.getAttribute("src");
-        }
-
     };
 
     const values = {
@@ -208,7 +216,6 @@ const GameContextProvider = ({ children }) => {
         checkForRowOf,
         moveDownAndRefill,
         touchDragStart,
-        touchDragMove,
         touchDragEnd
     };
 

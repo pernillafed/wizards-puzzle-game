@@ -2,4 +2,17 @@
 
 .game-page {
     padding: 2.5rem 1rem 2rem 1rem;
+
+    .reset-board-button {
+        text-align: center;
+        background-color: #fff3c2;
+        color: #645140;
+        padding: 0.5rem 0;
+        margin-bottom: 1rem;
+        border-radius: 15px;
+        box-shadow: 2px 2px 5px #00000099;
+        font-family: "Open Sans", sans-serif;
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
 }
