@@ -9,8 +9,9 @@ const GameBoard = ({ gameType }) => {
         checkForColumnOf,
         checkForRowOf,
         moveDownAndRefill,
-        touchDragStart,
-        touchDragEnd
+        dragStart,
+        touchDragEnd,
+        mouseDrop
     } = useGameContext();
 
     const location = useLocation();
@@ -40,8 +41,14 @@ const GameBoard = ({ gameType }) => {
                     src={item}
                     alt={item}
                     data-id={i}
-                    onTouchStart={touchDragStart}
+                    onTouchStart={dragStart}
                     onTouchEnd={touchDragEnd}
+                    draggable={true}
+                    onDragStart={dragStart}
+                    onDragOver={(e) => e.preventDefault()}
+                    onDragEnter={(e) => e.preventDefault()}
+                    onDragLeave={(e) => e.preventDefault()}
+                    onDrop={mouseDrop}
                 />
             ))}
         </div>

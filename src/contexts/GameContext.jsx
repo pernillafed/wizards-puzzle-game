@@ -21,7 +21,7 @@ const GameContextProvider = ({ children }) => {
     const [itemBeingReplaced, setItemBeingReplaced] = useState(null);
 
     useEffect(() => {
-        if (itemBeingReplaced) {
+        if (itemBeingDragged && itemBeingReplaced) {
             const itemBeingDraggedId = parseInt(itemBeingDragged.getAttribute("data-id"));
             const itemBeingReplacedId = parseInt(itemBeingReplaced.getAttribute("data-id"));
     
@@ -56,10 +56,12 @@ const GameContextProvider = ({ children }) => {
             } else {
                 boardArrangement[itemBeingReplacedId] = itemBeingReplaced.getAttribute("src");
                 boardArrangement[itemBeingDraggedId] = itemBeingDragged.getAttribute("src");
+                setItemBeingDragged(null);
+                setItemBeingReplaced(null);
                 setBoardArrangement([...boardArrangement]);
             }
         }
-    }, [itemBeingReplaced]);
+    }, [itemBeingDragged, itemBeingReplaced]);
     
     const createBoard = (gameType) => {
         const randomItemList = [];
@@ -199,13 +201,17 @@ const GameContextProvider = ({ children }) => {
         }
     };
 
-    const touchDragStart = (e) => {
+    const dragStart = (e) => {
         setItemBeingDragged(e.target);
     };
     
     const touchDragEnd = (e) => {
         const endTarget = document.elementFromPoint(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
         setItemBeingReplaced(endTarget);
+    };
+
+    const mouseDrop = (e) => {
+        setItemBeingReplaced(e.target);
     };
 
     const values = {
@@ -215,8 +221,9 @@ const GameContextProvider = ({ children }) => {
         checkForColumnOf,
         checkForRowOf,
         moveDownAndRefill,
-        touchDragStart,
-        touchDragEnd
+        dragStart,
+        touchDragEnd,
+        mouseDrop
     };
 
     return ( 
