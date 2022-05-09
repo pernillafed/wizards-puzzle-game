@@ -1,0 +1,18 @@
+@import 'globalVariables';
+
+$timer-width: 120px;
+
+.count-down-timer {
+    position: absolute;
+    top: calc($timer-width / -4);
+    left: calc(50% - ($timer-width / 2));
+    background-color: $color-brown;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: $timer-width;
+    height: $timer-width / 2;
+    border-radius: 15px;
+    font-size: 2rem;
+}

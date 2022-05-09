@@ -1,8 +1,12 @@
 @import 'globalVariables';
 
 @import 'score';
+@import 'countDownTimer';
 
 .score-board {
+    position: relative;
+    margin-top: 1.5rem;
+    z-index: -1;
 
     .score-wrapper {
         background-color: $color-white-transparent;
