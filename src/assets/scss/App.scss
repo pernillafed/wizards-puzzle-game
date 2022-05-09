@@ -1,9 +1,9 @@
 @import url('http://fonts.cdnfonts.com/css/harry-potter');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
-@import './Navbar.scss';
-@import './HomePage.scss';
-@import './GamePage.scss';
+@import 'navbar';
+@import 'homePage';
+@import 'gamePage';
 
 * {
     box-sizing: border-box;
