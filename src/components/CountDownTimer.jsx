@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useGameContext } from "../contexts/GameContext";
 
 const CountDownTimer = ({ gameType }) => {
     const [timer, setTimer] = useState("00:00");
     const [startTimeInMs, setStartTimeInMs] = useState(null);
+    const {setGameOver} = useGameContext();
 
     useEffect(() => {
         if (gameType === "easy") {
@@ -24,6 +26,7 @@ const CountDownTimer = ({ gameType }) => {
                 countDownTime = countDownTime - 1000;
                 if (countDownTime < 0) {
                     clearInterval(countDown);
+                    setGameOver(true);
                 }
             }, 1000);
             

@@ -20,6 +20,21 @@ const GameContextProvider = ({ children }) => {
     const [itemBeingDragged, setItemBeingDragged] = useState(null);
     const [itemBeingReplaced, setItemBeingReplaced] = useState(null);
     const [score, setScore] = useState(0);
+    const [highScore, setHighScore] = useState(
+        localStorage.getItem('highScore')
+            ? JSON.parse(localStorage.getItem('highScore'))
+            : {}
+    );
+    const [highScoreCreated, setHighScoreCreated] = useState(false);
+    const [gameOver, setGameOver] = useState(false);
+    
+    useEffect(() => {
+        if (highScoreCreated) {
+            localStorage.setItem('highScore', JSON.stringify(highScore));
+            setHighScoreCreated(false);
+            setGameOver(false);
+        }
+    }, [highScoreCreated]);
 
     useEffect(() => {
         if (itemBeingDragged && itemBeingReplaced) {
@@ -221,10 +236,26 @@ const GameContextProvider = ({ children }) => {
         setScore(0);
     };
 
+    const createHighScore = (gameType, newHighScore) => {
+        if (gameType === "easy") {
+            setHighScore({...highScore, easy: newHighScore});
+            setHighScoreCreated(true);
+        } else if (gameType === "medium") {
+            setHighScore({...highScore, medium: newHighScore});
+            setHighScoreCreated(true);
+        } else {
+            setHighScore({...highScore, difficult: newHighScore});
+            setHighScoreCreated(true);
+        }
+    }
+
     const values = {
         gameTypesList,
         boardArrangement,
         score,
+        highScore,
+        gameOver,
+        setGameOver,
         createBoard,
         checkForColumnOf,
         checkForRowOf,
@@ -232,7 +263,8 @@ const GameContextProvider = ({ children }) => {
         dragStart,
         touchDragEnd,
         mouseDrop,
-        resetScore
+        resetScore,
+        createHighScore
     };
 
     return ( 
