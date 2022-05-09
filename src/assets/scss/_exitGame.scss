@@ -1,3 +1,5 @@
+@import 'globalVariables';
+
 .exit-game {
 
     .exit-game-popup {
@@ -15,13 +17,13 @@
             .answer-button {
                 text-align: center;
                 background-color: #fff3c2;
-                color: #645140;
+                color: $color-brown;
                 width: 65px;
                 justify-self: center;
                 padding: 0.5rem 0;
                 border-radius: 15px;
                 box-shadow: 2px 2px 5px #00000099;
-                font-family: "Open Sans", sans-serif;
+                font-family: $text-open-sans;
                 font-weight: bold;
                 font-size: 1.25rem;
             }

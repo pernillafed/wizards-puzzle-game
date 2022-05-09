@@ -1,3 +1,5 @@
+@import 'globalVariables';
+
 @import url('http://fonts.cdnfonts.com/css/harry-potter');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
@@ -22,12 +24,12 @@ body {
 }
 
 h1, h2 {
-    font-family: "Harry Potter", sans-serif;
+    font-family: $text-harry-potter;
     font-weight: normal;
 }
 
 p {
-    font-family: "Open Sans", sans-serif;
+    font-family: $text-open-sans;
 }
 
 .popup-background {
@@ -40,7 +42,7 @@ p {
     padding: 1.5rem;
 
     .popup {
-        background-color: #645140;
+        background-color: $color-brown;
         border-radius: 20px;
         padding: 1rem;
         display: flex;

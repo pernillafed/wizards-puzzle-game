@@ -1,8 +1,10 @@
+@import 'globalVariables';
+
 @import 'exitGame';
 @import 'gameRules';
 
 .navbar {
-    background-color: #645140;
+    background-color: $color-brown;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 1rem 1rem 0.5rem 1rem;
@@ -10,7 +12,7 @@
 
     .logo {
         text-align: center;
-        font-family: "Harry Potter", sans-serif;
+        font-family: $text-harry-potter;
 
         .logo-full {
             display: none;

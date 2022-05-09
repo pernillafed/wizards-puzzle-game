@@ -1,3 +1,5 @@
+@import 'globalVariables';
+
 .game-type-card {
     margin-top: 1.25rem;
     width: 100%;
@@ -31,7 +33,7 @@
     }
 
     p {
-        background-color: #ffffffd9;
+        background-color: $color-white-transparent;
         color: #000;
         border-radius: 0 0 20px 20px;
         padding: 0.5rem 1rem;

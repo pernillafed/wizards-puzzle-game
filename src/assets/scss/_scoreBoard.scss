@@ -1,0 +1,17 @@
+@import 'globalVariables';
+
+@import 'score';
+
+.score-board {
+
+    .score-wrapper {
+        background-color: $color-white-transparent;
+        color: $color-brown;
+        border-radius: 20px;
+        padding: 4rem 3.5rem 0.5rem 3.5rem;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+}
