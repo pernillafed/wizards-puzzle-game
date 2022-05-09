@@ -19,6 +19,7 @@ const GameContextProvider = ({ children }) => {
     const [boardArrangement, setBoardArrangement] = useState([]);
     const [itemBeingDragged, setItemBeingDragged] = useState(null);
     const [itemBeingReplaced, setItemBeingReplaced] = useState(null);
+    const [score, setScore] = useState(0);
 
     useEffect(() => {
         if (itemBeingDragged && itemBeingReplaced) {
@@ -110,6 +111,7 @@ const GameContextProvider = ({ children }) => {
             if (column.every(item => boardArrangement[item] === referenceItem && !isBlank)) {
                 column.forEach(item => boardArrangement[item] = Blank);
                 setBoardArrangement([...boardArrangement]);
+                setScore(score + amountOfItems);
                 return true;
             }
         }
@@ -146,6 +148,7 @@ const GameContextProvider = ({ children }) => {
             if (row.every(item => boardArrangement[item] === referenceItem && !isBlank)) {
                 row.forEach(item => boardArrangement[item] = Blank);
                 setBoardArrangement([...boardArrangement]);
+                setScore(score + amountOfItems);
                 return true;
             }
         }
@@ -214,16 +217,22 @@ const GameContextProvider = ({ children }) => {
         setItemBeingReplaced(e.target);
     };
 
+    const resetScore = () => {
+        setScore(0);
+    };
+
     const values = {
         gameTypesList,
         boardArrangement,
+        score,
         createBoard,
         checkForColumnOf,
         checkForRowOf,
         moveDownAndRefill,
         dragStart,
         touchDragEnd,
-        mouseDrop
+        mouseDrop,
+        resetScore
     };
 
     return ( 

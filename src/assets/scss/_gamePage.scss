@@ -4,7 +4,17 @@
 @import 'scoreBoard';
 
 .game-page {
-    padding: 2.5rem 1rem 2rem 1rem;
+    padding: 1.5rem 1rem 2rem 1rem;
+
+    .game-page-type {
+        background-color: $color-white-transparent;
+        color: $color-brown;
+        padding: 0.5rem 0.75rem;
+        border-radius: 10px;
+        font-family: $text-open-sans;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
 
     .reset-board-button {
         text-align: center;
