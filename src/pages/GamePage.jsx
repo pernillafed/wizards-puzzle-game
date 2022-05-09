@@ -10,7 +10,7 @@ const GamePage = () => {
     
     return (
         <div className="game-page">
-            <ScoreBoard />
+            <ScoreBoard gameType={gameType} />
             <div className="reset-board-button" onClick={() => createBoard(gameType)}>Reset board</div>
             <GameBoard gameType={gameType} />
         </div>
