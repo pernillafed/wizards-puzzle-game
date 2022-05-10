@@ -26,7 +26,7 @@ const ScoreBoard = ({ gameType, timeIsUp }) => {
             setPreliminaryHighScore(score);
         }
     }, [score]);
-
+    
     useEffect(() => {
         setPreliminaryHighScore(highScoreByGameType);
     }, [highScore, highScoreByGameType]);

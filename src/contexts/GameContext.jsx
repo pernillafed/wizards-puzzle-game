@@ -80,7 +80,7 @@ const GameContextProvider = ({ children }) => {
     
     const createBoard = (gameType) => {
         const randomItemList = [];
-
+        
         if (gameType === "easy") {
             items = [GoldenSnitch, HogwartsShield, Owl, SortingHat, Wand];
         } else if (gameType === "medium") {
@@ -88,7 +88,7 @@ const GameContextProvider = ({ children }) => {
         } else {
             items = [GoldenSnitch, HogwartsShield, Owl, SortingHat, Wand, MaraudersMap, TimeTurner];
         }
-
+        
         for (let i = 0; i < boardWidth * boardWidth; i++) {
             const randomItem = items[Math.floor(Math.random() * items.length)];
             randomItemList.push(randomItem);
@@ -96,7 +96,7 @@ const GameContextProvider = ({ children }) => {
 
         setBoardArrangement(randomItemList);
     };
-
+    
     const checkForColumnOf = (amountOfItems) => {
         let lastIndex;
         
@@ -121,11 +121,11 @@ const GameContextProvider = ({ children }) => {
             
             const referenceItem = boardArrangement[i];
             const isBlank = boardArrangement[i] === Blank;
-
+            
             if (column.every(item => boardArrangement[item] === referenceItem && !isBlank)) {
+                setScore(prevScore => prevScore + (amountOfItems === 3 ? 1 : amountOfItems === 4 ? 3 : 5));
                 column.forEach(item => boardArrangement[item] = Blank);
                 setBoardArrangement([...boardArrangement]);
-                setScore(score + amountOfItems);
                 return true;
             }
         }
@@ -146,7 +146,7 @@ const GameContextProvider = ({ children }) => {
 
         for (let i = 0; i < boardWidth * boardWidth; i++) {
             let row;
-
+            
             if (amountOfItems === 5) {
                 row = [i, i + 1, i + 2, i + 3, i + 4];
             } else if (amountOfItems === 4) {
@@ -156,13 +156,13 @@ const GameContextProvider = ({ children }) => {
             }
             const referenceItem = boardArrangement[i];
             const isBlank = boardArrangement[i] === Blank;
-
+            
             if (notValid.includes(i)) continue;
-
+            
             if (row.every(item => boardArrangement[item] === referenceItem && !isBlank)) {
+                setScore(prevScore => prevScore + (amountOfItems === 3 ? 1 : amountOfItems === 4 ? 3 : 5));
                 row.forEach(item => boardArrangement[item] = Blank);
                 setBoardArrangement([...boardArrangement]);
-                setScore(score + amountOfItems);
                 return true;
             }
         }
@@ -217,7 +217,7 @@ const GameContextProvider = ({ children }) => {
             return false;
         }
     };
-
+    
     const dragStart = (e) => {
         setItemBeingDragged(e.target);
     };
