@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import useOutsideClick from '../hooks/useOutsideClick';
 
 const GameRules = ({ setShowGameRules }) => {
+    const popupRef = useRef();
+
+    useOutsideClick(() => setShowGameRules(false), popupRef);
+
     return (
         <div className="game-rules popup-background">
-            <div className="game-rules-popup popup">
+            <div className="game-rules-popup popup" ref={popupRef}>
                 <div className="close-button">
                     <i className="fas fa-times-circle" onClick={() => setShowGameRules(false)}></i>
                 </div>
