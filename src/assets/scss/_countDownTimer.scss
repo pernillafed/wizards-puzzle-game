@@ -1,10 +1,11 @@
 @import 'globalVariables';
 
 $timer-width: 120px;
+$timer-height: calc($timer-width / 2);
 
 .count-down-timer {
     position: absolute;
-    top: calc($timer-width / -4);
+    top: calc($timer-height / -2);
     left: calc(50% - ($timer-width / 2));
     background-color: $color-brown;
     display: flex;
@@ -12,7 +13,7 @@ $timer-width: 120px;
     align-items: center;
     text-align: center;
     width: $timer-width;
-    height: $timer-width / 2;
+    height: $timer-height;
     border-radius: 15px;
     font-size: 2rem;
 }
