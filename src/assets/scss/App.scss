@@ -21,6 +21,8 @@ html {
 body {
     color: $color-yellow;
     backdrop-filter: blur(2px) brightness(80%);
+    min-height: 100vh;
+    height: fit-content;
 }
 
 h1, h2 {
