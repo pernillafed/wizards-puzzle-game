@@ -1,7 +1,6 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import gameTypes from "../data/gameTypes.json";
 import { GoldenSnitch, HogwartsShield, MaraudersMap, Owl, SortingHat, TimeTurner, Wand, Blank } from "../assets/icons";
-import { useEffect, useState } from "react/cjs/react.development";
 
 const GameContext = createContext();
 

@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useGameContext } from "../contexts/GameContext";
 import CountDownTimer from "./CountDownTimer";
 import Score from "./Score";
+import useHighScore from "../hooks/useHighScore";
 
-const ScoreBoard = ({ gameType }) => {
-    const {score, highScore, gameOver, resetScore, createHighScore} = useGameContext();
-    const [preliminaryHighScore, setPreliminaryHighScore] = useState(0)
+const ScoreBoard = ({ gameType, timeIsUp }) => {
+    const [preliminaryHighScore, setPreliminaryHighScore] = useState(0);
+    const {score, highScore, resetScore, createHighScore} = useGameContext();
+    const highScoreByGameType = useHighScore(gameType, highScore);
 
     useEffect(() => {
         if (score) {
@@ -14,10 +16,10 @@ const ScoreBoard = ({ gameType }) => {
     }, []);
 
     useEffect(() => {
-        if (gameOver) {
+        if (timeIsUp) {
             createHighScore(gameType, preliminaryHighScore);
         }
-    }, [gameOver]);
+    }, [timeIsUp]);
 
     useEffect(() => {
         if (score > preliminaryHighScore) {
@@ -26,16 +28,8 @@ const ScoreBoard = ({ gameType }) => {
     }, [score]);
 
     useEffect(() => {
-        if (gameType === "easy" && highScore.easy) {
-            setPreliminaryHighScore(highScore.easy)
-        } else if (gameType === "medium" && highScore.medium) {
-            setPreliminaryHighScore(highScore.medium)
-        } else if (gameType === "difficult" && highScore.difficult) {
-            setPreliminaryHighScore(highScore.difficult)
-        } else {
-            setPreliminaryHighScore(0);
-        }
-    }, [highScore]);
+        setPreliminaryHighScore(highScoreByGameType);
+    }, [highScore, highScoreByGameType]);
 
     return (
         <div className="score-board">

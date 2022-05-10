@@ -2,6 +2,7 @@
 
 @import 'gameBoard';
 @import 'scoreBoard';
+@import 'timeIsUp';
 
 .game-page {
     padding: 1.5rem 1rem 2rem 1rem;
@@ -18,12 +19,12 @@
 
     .reset-board-button {
         text-align: center;
-        background-color: #fff3c2;
+        background-color: $color-yellow;
         color: $color-brown;
         padding: 0.5rem 0;
         margin: 1rem 0;
         border-radius: 15px;
-        box-shadow: 2px 2px 5px #00000099;
+        box-shadow: $shadow-primary;
         font-family: $text-open-sans;
         font-weight: bold;
         font-size: 1.25rem;

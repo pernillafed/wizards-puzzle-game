@@ -9,7 +9,7 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 20px;
-    box-shadow: 4px 4px 10px #000000cc;
+    box-shadow: $shadow-secondary;
 
     &.game-type-easy {
         background: url(../pictures/diagon-alley.jpg) no-repeat center center;
