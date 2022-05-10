@@ -6,14 +6,8 @@ import useHighScore from "../hooks/useHighScore";
 
 const ScoreBoard = ({ gameType, timeIsUp }) => {
     const [preliminaryHighScore, setPreliminaryHighScore] = useState(0);
-    const {score, highScore, resetScore, createHighScore} = useGameContext();
-    const highScoreByGameType = useHighScore(gameType, highScore);
-
-    useEffect(() => {
-        if (score) {
-            resetScore();
-        }
-    }, []);
+    const {score, highScore, newGame, createHighScore} = useGameContext();
+    const highScoreByGameType = useHighScore(gameType, highScore, newGame);
 
     useEffect(() => {
         if (timeIsUp) {

@@ -1,8 +1,20 @@
-import React from 'react';
+import React,{ useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const TimeIsUp = ({ setShowTimeIsUp, score, previousHighScore }) => {
+const TimeIsUp = ({ setShowTimeIsUp, score, previousHighScore, startGame }) => {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 3000);
+    }, []);
+
+    const handlePlayAgainClick = () => {
+        startGame();
+        setShowTimeIsUp(false);
+    };
 
     const handleBackClick = () => {
         navigate("/");
@@ -13,21 +25,25 @@ const TimeIsUp = ({ setShowTimeIsUp, score, previousHighScore }) => {
         <div className="time-is-up popup-background">
             <div className="time-is-up-popup popup">
                 <h1>Time is up</h1>
-                {score > previousHighScore ? (
+                {loading ? <p>Loading result...</p> : (
                     <>
-                        <p>You beat you high score!</p>
-                        <p className="score-title">New high score</p>
-                        <p className="total-score">{score}</p>
-                    </>
-                ) : (
-                    <>
-                        <p>You didn't beat your high score</p>
-                        <p className="score-title">Score</p>
-                        <p className="total-score">{score}</p>
+                        {score > previousHighScore ? (
+                            <>
+                                <p>You beat you high score!</p>
+                                <p className="score-title">New high score</p>
+                                <p className="total-score">{score}</p>
+                            </>
+                        ) : (
+                            <>
+                                <p>You didn't beat your high score</p>
+                                <p className="score-title">Score</p>
+                                <p className="total-score">{score}</p>
+                            </>
+                        )}
                     </>
                 )}
                 <div className="button-container">
-                    <div className="answer-button" onClick={() => setShowTimeIsUp(false)}>Play again</div>
+                    <div className="answer-button" onClick={handlePlayAgainClick}>Play again</div>
                     <div className="answer-button" onClick={handleBackClick}>Back to home</div>
                 </div>
             </div>

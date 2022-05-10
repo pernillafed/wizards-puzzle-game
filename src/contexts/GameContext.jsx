@@ -26,6 +26,7 @@ const GameContextProvider = ({ children }) => {
     );
     const [highScoreCreated, setHighScoreCreated] = useState(false);
     const [gameOver, setGameOver] = useState(false);
+    const [newGame, setNewGame] = useState(false);
     
     useEffect(() => {
         if (highScoreCreated) {
@@ -231,9 +232,16 @@ const GameContextProvider = ({ children }) => {
         setItemBeingReplaced(e.target);
     };
 
-    const resetScore = () => {
-        setScore(0);
+    const startGame = () => {
+        setScore(0)
+        setNewGame(true);
+        setGameOver(false);
     };
+    
+    const endGame = () => {
+        setGameOver(true);
+        setNewGame(false);
+    }
 
     const createHighScore = (gameType, newHighScore) => {
         if (gameType === "easy") {
@@ -246,7 +254,7 @@ const GameContextProvider = ({ children }) => {
             setHighScore({...highScore, difficult: newHighScore});
             setHighScoreCreated(true);
         }
-    }
+    };
 
     const values = {
         gameTypesList,
@@ -254,7 +262,7 @@ const GameContextProvider = ({ children }) => {
         score,
         highScore,
         gameOver,
-        setGameOver,
+        newGame,
         createBoard,
         checkForColumnOf,
         checkForRowOf,
@@ -262,8 +270,9 @@ const GameContextProvider = ({ children }) => {
         dragStart,
         touchDragEnd,
         mouseDrop,
-        resetScore,
-        createHighScore
+        createHighScore,
+        startGame,
+        endGame
     };
 
     return ( 

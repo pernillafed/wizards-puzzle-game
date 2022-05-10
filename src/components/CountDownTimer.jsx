@@ -4,7 +4,7 @@ import { useGameContext } from "../contexts/GameContext";
 const CountDownTimer = ({ gameType }) => {
     const [timer, setTimer] = useState("00:00");
     const [startTimeInMs, setStartTimeInMs] = useState(null);
-    const {setGameOver} = useGameContext();
+    const {newGame, endGame} = useGameContext();
 
     useEffect(() => {
         if (gameType === "easy") {
@@ -17,7 +17,7 @@ const CountDownTimer = ({ gameType }) => {
     }, []);
 
     useEffect(() => {
-        if (startTimeInMs) {
+        if (startTimeInMs && newGame) {
             let countDownTime = startTimeInMs;
             const countDown = setInterval(() => {
                 const minutes = Math.floor((countDownTime % (1000 * 60 * 60)) / (1000 * 60));
@@ -26,7 +26,7 @@ const CountDownTimer = ({ gameType }) => {
                 countDownTime = countDownTime - 1000;
                 if (countDownTime < 0) {
                     clearInterval(countDown);
-                    setGameOver(true);
+                    endGame();
                 }
             }, 1000);
             
@@ -35,7 +35,7 @@ const CountDownTimer = ({ gameType }) => {
                 setTimer("00:00");
             }
         }
-    }, [startTimeInMs]);
+    }, [startTimeInMs, newGame]);
 
     return (
         <div className="count-down-timer">

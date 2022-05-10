@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useHighScore = (gameType, highScore) => {
+const useHighScore = (gameType, highScore, newGame) => {
     const [highScoreByGameType, setHighScoreByGameType] = useState()
 
     useEffect(() => {
@@ -13,7 +13,7 @@ const useHighScore = (gameType, highScore) => {
         } else {
             setHighScoreByGameType(0);
         }
-    }, []);
+    }, [newGame]);
 
     return highScoreByGameType;
 }
