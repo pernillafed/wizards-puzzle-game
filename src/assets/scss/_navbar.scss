@@ -10,6 +10,15 @@
     padding: 1.25rem 1.25rem 0.5rem 1.25rem;
     font-size: 1.5rem;
 
+    i {
+        cursor: pointer;
+        transition: text-shadow 0.1s;
+
+        &:hover {
+            text-shadow: $shadow-primary;
+        }
+    }
+
     .logo {
         text-align: center;
         font-family: $text-harry-potter;

@@ -10,6 +10,12 @@
     align-items: center;
     border-radius: 20px;
     box-shadow: $shadow-secondary;
+    transition: transform 0.2s;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.08);
+    }
 
     &.game-type-easy {
         background: url(../pictures/diagon-alley.jpg) no-repeat center center;

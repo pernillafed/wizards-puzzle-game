@@ -26,6 +26,12 @@
                 font-family: $text-open-sans;
                 font-weight: bold;
                 font-size: 1.25rem;
+                transition: transform 0.2s;
+                cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.08);
+                }
             }
         }
 

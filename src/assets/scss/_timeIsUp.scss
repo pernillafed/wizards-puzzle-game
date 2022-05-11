@@ -38,6 +38,12 @@
                 padding: 0.5rem 0;
                 margin-bottom: 0.75rem;
                 text-align: center;
+                transition: transform 0.2s;
+                cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.08);
+                }
             }
         }
 

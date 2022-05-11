@@ -13,6 +13,12 @@
         font-family: $text-open-sans;
         font-weight: bold;
         font-size: 1.25rem;
+        transition: background-color 0.2s;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #fff6d0;
+        }
     }
 
     .game-board {

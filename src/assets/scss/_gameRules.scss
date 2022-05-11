@@ -1,3 +1,5 @@
+@import 'globalVariables';
+
 .game-rules {
 
     .game-rules-popup {
@@ -5,6 +7,12 @@
         .close-button {
             text-align: end;
             font-size: 1.5rem;
+            transition: text-shadow 0.1s;
+            cursor: pointer;
+
+            &:hover {
+                text-shadow: $shadow-primary;
+            }
         }
     }
 }
