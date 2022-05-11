@@ -28,7 +28,7 @@ const Navbar = () => {
                     <span className="logo-full">Wizards Puzzle</span>
                 </div>
                 <div className="info-button">
-                    <i className="fas fa-info-circle" onClick={() => setShowGameRules(!showGameRules)}></i>
+                    <i className="fas fa-info-circle" onClick={() => setShowGameRules(true)}></i>
                 </div>
             </div>
             {showExitGame && <ExitGame setShowExitGame={setShowExitGame} />}

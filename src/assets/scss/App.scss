@@ -16,50 +16,78 @@
 html {
     background: url(../pictures/hogwarts-castle.jpg) no-repeat center center fixed;
     background-size: cover;
-}
 
-body {
-    color: $color-yellow;
-    backdrop-filter: blur(2px) brightness(80%);
-    min-height: 100vh;
-    height: fit-content;
-}
+    body {
+        color: $color-yellow;
+        backdrop-filter: blur(2px) brightness(80%);
+        min-height: 100vh;
+        height: fit-content;
 
-h1, h2 {
-    font-family: $text-harry-potter;
-    font-weight: normal;
-}
-
-p {
-    font-family: $text-open-sans;
-}
-
-.popup-background {
-    background-color: #000000de;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1.5rem;
-
-    .popup {
-        background-color: $color-brown;
-        border-radius: 20px;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-
-        h1 {
-            text-align: center;
-            font-size: 1.5rem;
-            margin: 0.5rem 0;
+        h1, h2 {
+            font-family: $text-harry-potter;
+            font-weight: normal;
         }
 
         p {
-            text-align: center;
-            padding: 1rem;
-            font-size: 1.25rem;
+            font-family: $text-open-sans;
+        }
+        
+        .popup-background {
+            background-color: #000000ea;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 5.5rem 1.5rem 1.5rem 1.5rem;
+        
+            .popup {
+                background-color: $color-brown;
+                border-radius: 20px;
+                padding: 1rem 1rem 1.5rem 1rem;
+                display: flex;
+                flex-direction: column;
+                
+                h1 {
+                    text-align: center;
+                    font-size: 1.5rem;
+                    margin: 0.5rem 0;
+                }
+        
+                p {
+                    text-align: center;
+                    padding: 1rem;
+                    font-size: 1.25rem;
+                }
+            }
+        }
+
+        @media (min-width: $breakpoint-sm) {
+
+            .popup-background {
+                padding: 5.75rem 2rem 2rem 2rem;
+
+                .popup {
+                    padding: 1.5rem 1.5rem 2rem 1.5rem;
+                    max-width: 600px;
+                    margin: 0 auto;
+
+                    h1 {
+                        font-size: 1.75rem;
+                    }
+                }
+            }
+        }
+
+        @media (min-width: $breakpoint-md) {
+
+            .popup-background {
+                padding: 6.5rem 2rem 2rem 2rem;
+            }
         }
     }
 }
+
+
+
+

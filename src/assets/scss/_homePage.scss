@@ -34,6 +34,13 @@
 
     .home-page {
         padding: 3rem 2rem 2.5rem 2rem;
+
+        .hero {
+
+            h1 {
+                font-size: 1.75rem;
+            }
+        }
     }
 }
 
@@ -44,7 +51,7 @@
         .hero {
 
             h1 {
-                font-size: 1.75rem;
+                font-size: 2rem;
             }
         }
         
@@ -62,17 +69,6 @@
     .home-page {
         padding: 3.25rem 2.25rem 2.75rem 2.25rem;
 
-        .game-types {
-            column-gap: 1.75rem;
-        }
-    }
-}
-
-@media (min-width: $breakpoint-xl) {
-
-    .home-page {
-        padding: 4rem 3rem 3.5rem 3rem;
-
         .hero {
 
             h1 {
@@ -83,6 +79,17 @@
                 font-size: 1.5rem;
             }
         }
+
+        .game-types {
+            column-gap: 1.75rem;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-xl) {
+
+    .home-page {
+        padding: 4rem 3rem 3.5rem 3rem;
 
         .game-types {
             column-gap: 2.25rem;

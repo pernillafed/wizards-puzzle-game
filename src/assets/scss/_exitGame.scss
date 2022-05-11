@@ -9,10 +9,10 @@
         }
 
         .button-container {
-            margin: 2rem 0 1.5rem 0;
-            padding: 0 3rem;
+            margin: 2rem auto 1.25rem auto;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
+            width: 65%;
 
             .answer-button {
                 text-align: center;
@@ -26,6 +26,18 @@
                 font-family: $text-open-sans;
                 font-weight: bold;
                 font-size: 1.25rem;
+            }
+        }
+
+        @media (min-width: $breakpoint-sm) {
+
+            .button-container {
+                width: 45%;
+
+                .answer-button {
+                    width: 80px;
+                    font-size: 1.5rem;
+                }
             }
         }
     }
