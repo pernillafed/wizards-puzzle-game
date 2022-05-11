@@ -1,9 +1,20 @@
+// COLORS
 $color-brown: #645140;
 $color-white-transparent: #ffffffd9;
 $color-yellow: #fff3c2;
 
+// FONTS
 $text-open-sans: "Open Sans", sans-serif;
 $text-harry-potter: "Harry Potter", sans-serif;
 
+// SHADOWS
 $shadow-primary: 2px 2px 5px #00000099;
 $shadow-secondary: 4px 4px 10px #000000cc;
+
+// BREAKPOINTS
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+$breakpoint-xxxl: 1920px;

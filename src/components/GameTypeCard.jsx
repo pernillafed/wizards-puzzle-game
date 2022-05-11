@@ -7,7 +7,9 @@ const GameTypeCard = ({ label, description, gameTypeClass }) => {
     return (
         <div className={`game-type-card ${gameTypeClass}`}  onClick={() => navigate(`/game/${label}`)}>
             <h2>{label.charAt(0).toUpperCase() + label.slice(1)}</h2>
-            <p className="game-type-description">{description}</p>
+            <div className="game-type-description">
+                <p>{description}</p>
+            </div>
         </div>
     );
 }
