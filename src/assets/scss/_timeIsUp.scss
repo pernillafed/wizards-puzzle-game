@@ -1,3 +1,5 @@
+@import 'globalVariables';
+
 .time-is-up {
 
     .time-is-up-popup {
@@ -22,7 +24,7 @@
         }
 
         .button-container {
-            margin: 2rem 0 0.5rem 0;
+            margin-top: 2rem;
             padding: 0 1rem;
 
             .answer-button {
@@ -34,8 +36,19 @@
                 font-weight: bold;
                 font-size: 1.25rem;
                 padding: 0.5rem 0;
-                margin-bottom: 1rem;
+                margin-bottom: 0.75rem;
                 text-align: center;
+            }
+        }
+
+        @media (min-width: $breakpoint-sm) {
+
+            .button-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 1.5rem;
+                width: 80%;
+                margin: 2.5rem auto 0 auto;
             }
         }
     }
