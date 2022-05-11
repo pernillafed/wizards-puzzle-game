@@ -3,15 +3,19 @@ import { useNavigate } from 'react-router-dom';
 
 const TimeIsUp = ({ setShowTimeIsUp, score, previousHighScore, startGame, gameType, highScore }) => {
     const navigate = useNavigate();
+    // Creates fake loading to wait out any chain reaction that may occur at the end of the game
     const [loading, setLoading] = useState(true);
     const [newHighScore, setNewHighScore] = useState(0)
 
+    // Stops the "loading" after a certain amout of time or when component unmounts
     useEffect(() => {
-        setTimeout(() => {
+        const fakeLoading = setTimeout(() => {
             setLoading(false);
         }, 3000);
+        return () => clearTimeout(fakeLoading);
     }, []);
 
+    // Sets new high score at the end of the game so it can be output in the DOM
     useEffect(() => {
         if (gameType === "easy" && highScore.easy) {
             setNewHighScore(highScore.easy)
@@ -22,6 +26,7 @@ const TimeIsUp = ({ setShowTimeIsUp, score, previousHighScore, startGame, gameTy
         }
     }, [highScore]);
 
+    // Calls the startGame function in GameContext (and closes popup)
     const handlePlayAgainClick = () => {
         startGame();
         setShowTimeIsUp(false);

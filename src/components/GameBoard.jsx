@@ -16,10 +16,14 @@ const GameBoard = ({ gameType }) => {
 
     const location = useLocation();
 
+    // Updates the board according to difficulty level when location changes
     useEffect(() => {
         createBoard(gameType);
     }, [location]);
 
+    // Creates a game loop that continuosly checks for rows and columns
+    // It also moves items down and refills new ones
+    // Needs boardArrangement to work properly
     useEffect(() => {
         const gameLoop = setInterval(() => {
             checkForColumnOf(5);
@@ -38,6 +42,7 @@ const GameBoard = ({ gameType }) => {
             <div className="reset-board-button" onClick={() => createBoard(gameType)}>Reset board</div>
             <div className="game-board">
                 {boardArrangement && boardArrangement.map((item, i) => (
+                    // onDrag... functions are for dragging on a desktop and onTouch... is for "dragging" on mobile and tablet
                     <img
                         key={i}
                         src={item}

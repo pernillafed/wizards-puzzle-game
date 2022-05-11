@@ -35,12 +35,9 @@
             width: 100%;
         }
     }
-}
-
-@media (min-width: $breakpoint-lg) {
-
-    .game-board-container {
-
+    
+    @media (min-width: $breakpoint-lg) {
+    
         .reset-board-button {
             margin-top: 0;
         }

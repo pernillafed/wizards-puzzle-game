@@ -6,6 +6,7 @@ const CountDownTimer = ({ gameType }) => {
     const [startTimeInMs, setStartTimeInMs] = useState(null);
     const {newGame, endGame} = useGameContext();
 
+    // Sets start time according to difficulty level when component has mounted
     useEffect(() => {
         if (gameType === "easy") {
             setStartTimeInMs(900000);
@@ -16,6 +17,8 @@ const CountDownTimer = ({ gameType }) => {
         }
     }, []);
 
+    // Starts the timer and stops it when time is up (or when the component unmounts)
+    // When time is up it also calls the endGame function in GameContext
     useEffect(() => {
         if (startTimeInMs && newGame) {
             let countDownTime = startTimeInMs;

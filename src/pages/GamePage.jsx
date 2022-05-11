@@ -11,24 +11,29 @@ const GamePage = () => {
     const [previousHighScore, setPreviousHighScore] = useState(0);
     const { gameType } = useParams();
     const { score, highScore, gameOver, newGame, createBoard, startGame } = useGameContext();
+    // Custom hook to get initial high score for a specific difficulty level
     const highScoreByGameType = useHighScore(gameType, highScore, newGame);
 
+    // Calls the startGame function in GameContext
     useEffect(() => {
         startGame();
     }, []);
 
+    // Sets showTimeIsUp when game is over
     useEffect(() => {
         if (gameOver) {
             setShowTimeIsUp(true);
         }
     }, [gameOver]);
 
+    // Calls the createBoard function in GameContext when new game is started
     useEffect(() => {
         if (newGame) {
             createBoard(gameType);
         }
     }, [newGame]);
 
+    // Gets initial high score from custom hook to output as high score in the DOM
     useEffect(() => {
         setPreviousHighScore(highScoreByGameType);
     }, [highScoreByGameType]);

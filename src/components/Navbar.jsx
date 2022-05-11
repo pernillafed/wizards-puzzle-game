@@ -9,6 +9,7 @@ const Navbar = () => {
     const [showExitGame, setShowExitGame] = useState(false);
     const location = useLocation();
 
+    // Sets inGame to true when on a game page so that back button can be dynamically output
     useEffect(() => {
         if (location.pathname.includes("game")) {
             setInGame(true);

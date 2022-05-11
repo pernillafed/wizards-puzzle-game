@@ -15,6 +15,9 @@ const GameContextProvider = ({ children }) => {
         return {...type};
     });
     
+
+    // STATES
+
     const [boardArrangement, setBoardArrangement] = useState([]);
     const [itemBeingDragged, setItemBeingDragged] = useState(null);
     const [itemBeingReplaced, setItemBeingReplaced] = useState(null);
@@ -27,7 +30,11 @@ const GameContextProvider = ({ children }) => {
     const [highScoreCreated, setHighScoreCreated] = useState(false);
     const [gameOver, setGameOver] = useState(false);
     const [newGame, setNewGame] = useState(false);
+
     
+    // USEEFFECT HOOKS
+
+    // Sets high score in local storage when the createHighScore function is done
     useEffect(() => {
         if (highScoreCreated) {
             localStorage.setItem('highScore', JSON.stringify(highScore));
@@ -36,6 +43,9 @@ const GameContextProvider = ({ children }) => {
         }
     }, [highScoreCreated]);
 
+    // Switches two items when one is dragged to another
+    // If it's a valid move and it makes a match the items stays switched
+    // If it's not a valid move or it doesn't make a match the items are switched back to their original positions
     useEffect(() => {
         if (itemBeingDragged && itemBeingReplaced) {
             const itemBeingDraggedId = parseInt(itemBeingDragged.getAttribute("data-id"));
@@ -78,7 +88,11 @@ const GameContextProvider = ({ children }) => {
             }
         }
     }, [itemBeingDragged, itemBeingReplaced]);
+
+
+    // GAME PLAY FUNCTIONS
     
+    // Creates a random list of items according to the difficulty level and sets it to the boardArrangement which is output in the DOM
     const createBoard = (gameType) => {
         const randomItemList = [];
         
@@ -98,6 +112,8 @@ const GameContextProvider = ({ children }) => {
         setBoardArrangement(randomItemList);
     };
     
+    // Checks for columns of which ever number is sent in with it, in a for loop
+    // If every item in a column being checked is the same (and it's not a blank space) the score is updated and each item in the column is replaced by a blank space
     const checkForColumnOf = (amountOfItems) => {
         let lastIndex;
         
@@ -132,6 +148,8 @@ const GameContextProvider = ({ children }) => {
         }
     };
 
+    // Checks for rows of which ever number is sent in with it, in a for loop
+    // If every item in a row being checked is the same (and it's not a blank space) the score is updated and each item in the row is replaced by a blank space
     const checkForRowOf = (amountOfItems) => {
         const notValid = [];
 
@@ -169,6 +187,10 @@ const GameContextProvider = ({ children }) => {
         }
     };
 
+    // Moves the items down and refills new ones according to the difficulty level
+    // For loop is used to check the board for blank spaces
+    // If there is a blank space in the first row it will be replaced with a new random item
+    // If there is a blank space below the one being iterated, that item will switch places with the blank space
     const moveDownAndRefill = (gameType) => {
         if (gameType === "easy") {
             items = [GoldenSnitch, HogwartsShield, Owl, SortingHat, Wand];
@@ -196,6 +218,9 @@ const GameContextProvider = ({ children }) => {
         }
     };
 
+    // Checks for valid moves of the item being dragged and the one being replaced
+    // It first determines if the item being dragged is in the first or last column of the board to prevent switches being made between the two
+    // Valid moves are pushed to an array and if the id of the item being replaced is in the array, the item being dragged is allowed to move there
     const validMove = (itemBeingDraggedId, itemBeingReplacedId) => {
         const validMoves = [];
         const firstColumn = [];
@@ -219,6 +244,9 @@ const GameContextProvider = ({ children }) => {
         }
     };
     
+
+    // DRAG FUNCTIONS
+
     const dragStart = (e) => {
         setItemBeingDragged(e.target);
     };
@@ -232,6 +260,9 @@ const GameContextProvider = ({ children }) => {
         setItemBeingReplaced(e.target);
     };
 
+
+    // START AND END FUNCTIONS
+
     const startGame = () => {
         setScore(0)
         setNewGame(true);
@@ -243,6 +274,10 @@ const GameContextProvider = ({ children }) => {
         setNewGame(false);
     }
 
+
+    // HIGH SCORE FUNCTION
+
+    // Sets high score to the right difficulty level
     const createHighScore = (gameType, newHighScore) => {
         if (gameType === "easy") {
             setHighScore({...highScore, easy: newHighScore});

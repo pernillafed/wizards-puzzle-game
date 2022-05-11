@@ -11,6 +11,7 @@ const ExitGame = ({ setShowExitGame }) => {
         setShowExitGame(false);
     };
 
+    // Calls custom hook to check for clicks outside of the popup "window"
     useOutsideClick(() => setShowExitGame(false), popupRef);
 
     return (

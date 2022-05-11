@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+// Custom hook that gets high score from the right difficulty level
 const useHighScore = (gameType, highScore, newGame) => {
     const [highScoreByGameType, setHighScoreByGameType] = useState()
 
