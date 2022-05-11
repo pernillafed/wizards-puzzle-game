@@ -36,9 +36,10 @@ const GamePage = () => {
     return (
         <div className="game-page">
             <span className="game-page-type">{gameType.charAt(0).toUpperCase() + gameType.slice(1)}</span>
-            <ScoreBoard gameType={gameType} timeIsUp={showTimeIsUp} />
-            <div className="reset-board-button" onClick={() => createBoard(gameType)}>Reset board</div>
-            <GameBoard gameType={gameType} />
+            <div className="content-wrapper">
+                <ScoreBoard gameType={gameType} timeIsUp={showTimeIsUp} />
+                <GameBoard gameType={gameType} />
+            </div>
             {showTimeIsUp && <TimeIsUp setShowTimeIsUp={setShowTimeIsUp} score={score} previousHighScore={previousHighScore} startGame={startGame} />}
         </div>
     );

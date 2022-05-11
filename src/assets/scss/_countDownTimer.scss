@@ -17,3 +17,12 @@ $timer-height: calc($timer-width / 2);
     border-radius: 15px;
     font-size: 2rem;
 }
+
+@media (min-width: $breakpoint-md) {
+
+    .count-down-timer {
+        position: static;
+        width: 100%;
+        height: 100%;
+    }
+}

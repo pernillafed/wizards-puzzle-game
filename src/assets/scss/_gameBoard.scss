@@ -1,16 +1,42 @@
 @import 'globalVariables';
 
-.game-board {
-    background-color: $color-white-transparent;
-    border-radius: 20px;
-    box-shadow: $shadow-secondary;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 0.5rem;
-    padding: 0.75rem;
-    z-index: -1;
+.game-board-container {
 
-    img {
-        width: 100%;
+    .reset-board-button {
+        text-align: center;
+        background-color: $color-yellow;
+        color: $color-brown;
+        padding: 0.5rem 0;
+        margin: 1rem 0;
+        border-radius: 15px;
+        box-shadow: $shadow-primary;
+        font-family: $text-open-sans;
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+
+    .game-board {
+        background-color: $color-white-transparent;
+        border-radius: 20px;
+        box-shadow: $shadow-secondary;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 0.5rem;
+        padding: 0.75rem;
+        z-index: -1;
+    
+        img {
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-lg) {
+
+    .game-board-container {
+
+        .reset-board-button {
+            margin-top: 0;
+        }
     }
 }

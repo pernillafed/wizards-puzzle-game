@@ -19,3 +19,38 @@
         margin-bottom: 2rem;
     }
 }
+
+@media (min-width: $breakpoint-md) {
+
+    .score-board {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: 2rem;
+        margin-bottom: 2rem;
+
+        .score-wrapper {
+            padding: 1.75rem 4rem 0 4rem;
+            margin-bottom: 0;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-lg) {
+
+    .score-board {
+        grid-template-columns: 1fr;
+        row-gap: 2rem;
+        height: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        .score-wrapper {
+            padding: 1.75rem 4rem 0 4rem;
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+    }
+}

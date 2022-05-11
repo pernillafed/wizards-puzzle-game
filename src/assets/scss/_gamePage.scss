@@ -6,6 +6,8 @@
 
 .game-page {
     padding: 1.5rem 1rem 2rem 1rem;
+    max-width: 375px;
+    margin: 0 auto;
 
     .game-page-type {
         background-color: $color-white-transparent;
@@ -16,17 +18,45 @@
         font-weight: bold;
         letter-spacing: 1px;
     }
+}
 
-    .reset-board-button {
-        text-align: center;
-        background-color: $color-yellow;
-        color: $color-brown;
-        padding: 0.5rem 0;
-        margin: 1rem 0;
-        border-radius: 15px;
-        box-shadow: $shadow-primary;
-        font-family: $text-open-sans;
-        font-weight: bold;
-        font-size: 1.25rem;
+@media (min-width: $breakpoint-md) {
+
+    .game-page {
+        max-width: 600px;
+    }
+}
+
+@media (min-width: $breakpoint-lg) {
+
+    .game-page {
+        max-width: 800px;
+        padding: 2rem 1rem 2rem 1rem;
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 3fr 5fr;
+            column-gap: 2rem;
+            margin-top: 3rem;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-xl) {
+
+    .game-page {
+        max-width: 900px;
+
+        .content-wrapper {
+            grid-template-columns: 4fr 7fr;
+            column-gap: 4rem;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-xxl) {
+
+    .game-page {
+        padding: 2.5rem 1rem 2.5rem 1rem;
     }
 }

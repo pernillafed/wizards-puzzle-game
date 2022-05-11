@@ -34,23 +34,26 @@ const GameBoard = ({ gameType }) => {
     }, [boardArrangement]);
 
     return (
-        <div className="game-board">
-            {boardArrangement && boardArrangement.map((item, i) => (
-                <img
-                    key={i}
-                    src={item}
-                    alt={item}
-                    data-id={i}
-                    onTouchStart={dragStart}
-                    onTouchEnd={touchDragEnd}
-                    draggable={true}
-                    onDragStart={dragStart}
-                    onDragOver={(e) => e.preventDefault()}
-                    onDragEnter={(e) => e.preventDefault()}
-                    onDragLeave={(e) => e.preventDefault()}
-                    onDrop={mouseDrop}
-                />
-            ))}
+        <div className="game-board-container">
+            <div className="reset-board-button" onClick={() => createBoard(gameType)}>Reset board</div>
+            <div className="game-board">
+                {boardArrangement && boardArrangement.map((item, i) => (
+                    <img
+                        key={i}
+                        src={item}
+                        alt={item}
+                        data-id={i}
+                        onTouchStart={dragStart}
+                        onTouchEnd={touchDragEnd}
+                        draggable={true}
+                        onDragStart={dragStart}
+                        onDragOver={(e) => e.preventDefault()}
+                        onDragEnter={(e) => e.preventDefault()}
+                        onDragLeave={(e) => e.preventDefault()}
+                        onDrop={mouseDrop}
+                    />
+                ))}
+            </div>
         </div>
     
     );
