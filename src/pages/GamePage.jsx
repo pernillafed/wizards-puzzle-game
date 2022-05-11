@@ -11,7 +11,7 @@ const GamePage = () => {
     const [previousHighScore, setPreviousHighScore] = useState(0);
     const { gameType } = useParams();
     const { score, highScore, gameOver, newGame, createBoard, startGame } = useGameContext();
-    const highScoreByGameType = useHighScore(gameType, highScore);
+    const highScoreByGameType = useHighScore(gameType, highScore, newGame);
 
     useEffect(() => {
         startGame();
@@ -40,7 +40,15 @@ const GamePage = () => {
                 <ScoreBoard gameType={gameType} timeIsUp={showTimeIsUp} />
                 <GameBoard gameType={gameType} />
             </div>
-            {showTimeIsUp && <TimeIsUp setShowTimeIsUp={setShowTimeIsUp} score={score} previousHighScore={previousHighScore} startGame={startGame} />}
+            {showTimeIsUp &&
+                <TimeIsUp
+                    setShowTimeIsUp={setShowTimeIsUp}
+                    score={score}
+                    previousHighScore={previousHighScore}
+                    startGame={startGame}
+                    gameType={gameType}
+                    highScore={highScore}
+                />}
         </div>
     );
 }

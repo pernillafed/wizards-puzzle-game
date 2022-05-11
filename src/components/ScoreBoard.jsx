@@ -23,7 +23,7 @@ const ScoreBoard = ({ gameType, timeIsUp }) => {
     
     useEffect(() => {
         setPreliminaryHighScore(highScoreByGameType);
-    }, [highScore, highScoreByGameType]);
+    }, [highScoreByGameType]);
 
     return (
         <div className="score-board">

@@ -1,15 +1,26 @@
 import React,{ useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const TimeIsUp = ({ setShowTimeIsUp, score, previousHighScore, startGame }) => {
+const TimeIsUp = ({ setShowTimeIsUp, score, previousHighScore, startGame, gameType, highScore }) => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
+    const [newHighScore, setNewHighScore] = useState(0)
 
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
         }, 3000);
     }, []);
+
+    useEffect(() => {
+        if (gameType === "easy" && highScore.easy) {
+            setNewHighScore(highScore.easy)
+        } else if (gameType === "medium" && highScore.medium) {
+            setNewHighScore(highScore.medium)
+        } else {
+            setNewHighScore(highScore.difficult)
+        }
+    }, [highScore]);
 
     const handlePlayAgainClick = () => {
         startGame();
@@ -31,7 +42,7 @@ const TimeIsUp = ({ setShowTimeIsUp, score, previousHighScore, startGame }) => {
                             <>
                                 <p className="result-text">You beat your high score!</p>
                                 <p className="score-title">New high score</p>
-                                <p className="total-score">{score}</p>
+                                <p className="total-score">{newHighScore}</p>
                             </>
                         ) : (
                             <>
